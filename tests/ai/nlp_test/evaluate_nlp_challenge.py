@@ -1,4 +1,4 @@
-﻿"""Local Stage 4 evaluation; the Stage 2 extractor remains frozen.
+"""Local Stage 4 evaluation; the Stage 2 extractor is evaluated without mutation.
 
 Run: python -B evaluate_nlp_challenge.py
 """
@@ -13,10 +13,7 @@ from evaluate_nlp_controlled import OUTCOMES, file_hash, safe_ratio, summarize
 
 PROJECT_DIR = Path(__file__).resolve().parent
 DATASET_PATH = PROJECT_DIR / 'datasets' / 'CARE_NLP_Stage4_Challenge_Dataset.xlsx'
-RESULTS_PATH = PROJECT_DIR / 'results' / 'nlp_stage4_challenge_results.xlsx'
-# Historical counts supplied for Stage 3; these do not influence extraction.
-STAGE3_COUNTS = {'Number of cases': 24, 'Passed': 17, 'Failed': 7,
-                 'TP': 5, 'TN': 12, 'FP': 0, 'FN': 7}
+RESULTS_PATH = stage2.RESULTS_PATH.with_name('nlp_stage4_challenge_results.xlsx')
 
 
 def metrics_for(counts):
@@ -42,7 +39,7 @@ def main():
     if ids.eq('').any() or ids.duplicated().any():
         raise ValueError('Test IDs must be non-empty and unique.')
     nlp = spacy.load('en_core_web_sm')  # Installed local model; no downloads.
-    # The frozen evaluator passes text only to spaCy/extract_relationships,
+    # The current evaluator passes text only to spaCy/extract_relationships,
     # filters returned matches by target, and retains original evidence.
     results = stage2.evaluate_dataset(dataset, nlp)
     results.insert(results.columns.get_loc('Expected Relationship'), 'Challenge Type',
@@ -68,7 +65,14 @@ def main():
     failed.rename(columns={'Target NLP Relationship Type': 'Relationship Type'}, inplace=True)
     summary = pd.DataFrame(
         [{'Metric': key, 'Value': value} for key, value in {**totals, **metrics}.items()])
-    stage3 = {**STAGE3_COUNTS, **metrics_for(STAGE3_COUNTS)}
+    # Recompute the comparison with the same installed model and current code.
+    controlled = stage2.evaluate_dataset(stage2.load_dataset(
+        PROJECT_DIR / 'datasets' / 'CARE_NLP_Stage3_Controlled_Dataset.xlsx'), nlp)
+    controlled['Outcome (TP/TN/FP/FN)'] = [
+        OUTCOMES[(expected, detected)] for expected, detected in
+        zip(controlled['Expected Relationship'], controlled['Detected Relationship'])]
+    stage3_counts = summarize(controlled)
+    stage3 = {**stage3_counts, **metrics_for(stage3_counts)}
     stage4 = {**totals, **metrics}
     comparison = pd.DataFrame([
         {'Metric': key, 'Stage 3': stage3[key], 'Stage 4': stage4[key]}
@@ -81,9 +85,9 @@ def main():
         'Scope': 'Linguistic relationship extraction, not final contextual bias classification.',
         'Context': 'Reported, rejected, negated or quoted relationships are not endorsements.',
         'P6': 'Local gender-linked actions do not establish document-level representation imbalance.',
-        'Label observation': 'S4-P6-03 expects No for a balanced/shared outcome; frozen P6 extracts local actions. The supplied label is preserved.',
+        'Label observation': 'S4-P6-03 expects No for a balanced/shared outcome; current P6 extracts local actions. The supplied label is preserved.',
         'Reuse': 'Stage 2 load_dataset and evaluate_dataset unchanged; Stage 3 reporting helpers only.',
-        'Comparison source': 'User-supplied Stage 3 counts; metrics recomputed from those counts.',
+        'Comparison source': 'Stage 3 rerun using the current extractor and installed model.',
         'Zero denominators': 'Undefined metrics are reported as 0%.',
         'Python version': sys.version, 'spaCy version': spacy.__version__,
         'Model': 'en_core_web_sm', 'Model version': nlp.meta.get('version', ''),

@@ -1,4 +1,4 @@
-﻿"""Stage 3 controlled evaluation of the frozen Stage 2 relationship extractor.
+"""Stage 3 controlled evaluation of the current Stage 2 relationship extractor.
 
 Run locally: python -B evaluate_nlp_controlled.py
 No model downloads, network calls, or extraction rule changes are performed.
@@ -15,7 +15,7 @@ import nlp_relationship_analysis as stage2
 
 PROJECT_DIR = Path(__file__).resolve().parent
 DATASET_PATH = PROJECT_DIR / 'datasets' / 'CARE_NLP_Stage3_Controlled_Dataset.xlsx'
-RESULTS_PATH = PROJECT_DIR / 'results' / 'nlp_stage3_controlled_results.xlsx'
+RESULTS_PATH = stage2.RESULTS_PATH.with_name('nlp_stage3_controlled_results.xlsx')
 OUTCOMES = {('Yes', 'Yes'): 'TP', ('No', 'No'): 'TN',
             ('No', 'Yes'): 'FP', ('Yes', 'No'): 'FN'}
 
@@ -48,7 +48,7 @@ def main():
         raise ValueError('Test IDs must be non-empty and unique.')
     nlp = spacy.load('en_core_web_sm')
 
-    # Reuse the entire frozen evaluation path: text -> local spaCy Doc ->
+    # Reuse the entire current evaluation path: text -> local spaCy Doc ->
     # extract_relationships(Doc) -> target filtering. Labels never reach the extractor.
     results = stage2.evaluate_dataset(dataset, nlp)
     results.insert(results.columns.get_loc('Pass/Fail'), 'Outcome (TP/TN/FP/FN)',
@@ -116,7 +116,7 @@ def main():
     print('\nFailed test IDs: ' + (', '.join(failed_ids) or 'None'))
     print('\n' + per_type.to_string(index=False))
     print(f'\nResults saved to: {RESULTS_PATH}')
-    print('Frozen source hashes verified unchanged.')
+    print('Current source hashes verified unchanged.')
     print('Linguistic relationships only; no final bias verdict or document-level representation imbalance claim.')
 
 
