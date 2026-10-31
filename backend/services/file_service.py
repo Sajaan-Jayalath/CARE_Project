@@ -7,7 +7,9 @@ from pathlib import Path
 from backend.extraction.common import Collector, ExtractionError, MAX_BYTES
 from backend.extraction.office import package
 
-SUPPORTED_FORMATS = {"pdf", "docx", "pptx", "xlsx", "xlsm", "xls", "txt", "md", "csv", "tsv"}
+from backend.extraction.image_extractor import IMAGE_FORMATS
+
+SUPPORTED_FORMATS = {"pdf", "docx", "pptx", "xlsx", "xlsm", "xls", "txt", "md", "csv", "tsv"} | IMAGE_FORMATS
 
 
 def add_paragraphs(out, text, kind, separator=r"\r?\n[ \t]*\r?\n"):
@@ -26,7 +28,7 @@ def extract_text(text):
         raise ExtractionError("empty_text", "Enter some teaching text.")
     data = text.encode("utf-8")
     if len(data) > MAX_BYTES:
-        raise ExtractionError("file_too_large", "Input exceeds 20 MB.")
+        raise ExtractionError("file_too_large", f"Input exceeds {MAX_BYTES // 1_000_000} MB.")
     out = Collector(data, "text.txt", "text")
     # Pasted text (e.g. from Word or a web page) marks paragraphs with single line breaks.
     # Following blank lines stay with their paragraph so sections still cover all input.
@@ -45,14 +47,18 @@ def extract_file(data, filename):
     filename = (filename or "").replace("\\", "/").rsplit("/", 1)[-1]
     extension = Path(filename).suffix.lower().lstrip(".")
     if extension not in SUPPORTED_FORMATS:
-        raise ExtractionError("unsupported_format", "Supported text formats: PDF, DOCX, PPTX, XLSX, XLSM, XLS, TXT, MD, CSV and TSV. Images require the later OCR/vision stage.")
+        raise ExtractionError("unsupported_format", "Supported formats: PDF, DOCX, PPTX, XLSX, XLSM, XLS, TXT, MD, CSV, TSV and images (PNG, JPG, WebP, BMP, GIF, TIFF).")
     if not data:
         raise ExtractionError("empty_file", "The uploaded file is empty.")
     if len(data) > MAX_BYTES:
-        raise ExtractionError("file_too_large", "File exceeds 20 MB (20,000,000 bytes).")
+        raise ExtractionError("file_too_large", f"File exceeds {MAX_BYTES // 1_000_000} MB ({MAX_BYTES:,} bytes).")
     out = Collector(data, filename, extension)
     try:
-        if extension == "pdf":
+        if extension in IMAGE_FORMATS:
+            # Text and visual content are read by OCR and vision during analysis.
+            from backend.extraction.image_extractor import validate_upload
+            validate_upload(data, extension, out)
+        elif extension == "pdf":
             from backend.extraction.pdf_extractor import extract
             extract(data, out)
         elif extension in {"docx", "pptx", "xlsx", "xlsm"}:
