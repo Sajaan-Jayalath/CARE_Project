@@ -117,7 +117,7 @@ def test_invalid_inputs(data, name, code):
 
 
 def test_size_and_page_limits():
-    with pytest.raises(ExtractionError, match="20 MB"):
+    with pytest.raises(ExtractionError, match="100 MB"):
         extract_file(b"a" * (MAX_BYTES + 1), "big.txt")
     with pytest.raises(ExtractionError, match="100"):
         extract_text("a" * 300001)
@@ -181,6 +181,20 @@ def test_pdf_table_layout_retained_without_duplicate_text():
     tables = [t for source in result.sources.values() for t in source["tables"]]
     assert tables and tables[0]["rows"] == 2 and tables[0]["columns"] == 2
     assert "".join(s.text for s in result.document.sections).count("Engineer") == 1
+    assert not any(w["code"] == "visual_content_deferred" for w in result.warnings)
+    pdf.close()
+
+
+def test_pdf_header_rules_are_not_figures_but_drawn_shapes_are():
+    pdf = pymupdf.open()
+    for figure in (False, True):
+        page = pdf.new_page()
+        page.draw_line((47, 58), (393, 58))
+        page.insert_text((72, 100), "A paragraph of lesson text.")
+        if figure:
+            page.draw_rect(pymupdf.Rect(72, 150, 300, 300))
+    result = extract_file(pdf.tobytes(), "paper.pdf")
+    assert [w["page"] for w in result.warnings if w["code"] == "visual_content_deferred"] == [2]
     pdf.close()
 
 
