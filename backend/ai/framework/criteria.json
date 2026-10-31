@@ -1,0 +1,472 @@
+{
+  "framework_name": "CARE Gender Inclusivity Framework",
+  "version": "2026-09-25",
+  "version_note": "Project import date; not an author-assigned workbook version.",
+  "sources": [
+    {
+      "file": "CARE_Gender_Inclusivity_Framework__Summary.xlsx",
+      "sha256": "8865951ccbf4f2d07b740939215c192627d754f2ff64ff2d3520f151bb871753"
+    },
+    {
+      "file": "CARE_Final_Gender_Inclusivity_Framework.xlsx",
+      "sha256": "a65758208bcfa1af332d2dab68c59091bb2fae9ad26f70176bd5170c1eccbe23"
+    }
+  ],
+  "categories": [
+    {
+      "id": "CARE-GI-01",
+      "category": "Gendered Language",
+      "source_summary": {
+        "ID": "CARE-GI-01",
+        "CARE Category": "Gendered Language",
+        "Definition": "Unnecessary gender-specific, gender-exclusive, or gender-assumptive wording in teaching content.",
+        "Scenarios / Indicators": "Generic gendered pronouns; gender-marked occupational terms; gendered collective/address terms; gendered/exclusionary examples or names; binary gender assumptions.",
+        "Potential Concern Examples": "“Every programmer should submit his code.”; “Ask the chairman for approval.”; “Hey guys, please submit your assignments.”",
+        "Non-Concern Examples": "“Every programmer should submit their code.”; “John should submit his code.”; “The case study examines experiences reported by women in engineering.”",
+        "Context Considerations": "Do not flag gendered language simply because gender is mentioned. Consider whether gender is relevant to the person, topic, quotation, historical context, research population, or learning objective.",
+        "Possible Recommendation": "Replace unnecessary gender-specific wording with inclusive alternatives and avoid unnecessary assumptions about gender.",
+        "Analysis Method": "Rule + NLP + Contextual Analysis",
+        "Scope": "Sentence / Paragraph / Document",
+        "Research Basis": "Generic pronouns, occupational bias, exclusionary bias, and structural/contextual bias are identified in textual gender-bias research (Kanij et al., 2025)."
+      },
+      "criteria": [
+        {
+          "ID": "CARE-GI-01.1",
+          "CARE Category": "Gendered Language – Generic Gendered Pronouns",
+          "Definition": "Use of gender-specific pronouns for a generic or unspecified person where gender is irrelevant.",
+          "Indicators": "Generic he/him/his or she/her; pronoun assigned to an unspecified occupation or participant.",
+          "Potential Concern Examples": "Every programmer should submit his code.; A nurse should ensure she updates the record.",
+          "Non-Concern Examples": "John should submit his code.; Every programmer should submit their code.",
+          "Context Considerations": "A gendered pronoun is not automatically problematic when referring to a known individual. Consider whether the person’s gender is known and relevant.",
+          "Possible Recommendation": "Replace unnecessary gender-specific pronouns with neutral alternatives such as they/their.",
+          "Analysis Method": "Rule + NLP + Contextual Analysis",
+          "Scope": "Sentence",
+          "Research Basis": "Generic pronouns are identified as a form of textual gender bias in gender-bias taxonomies discussed by Kanij et al. (2025)."
+        },
+        {
+          "ID": "CARE-GI-01.2",
+          "CARE Category": "Gendered Language – Gender-Marked Occupational Terms",
+          "Definition": "Use of unnecessarily gender-marked terminology for occupations or professional roles.",
+          "Indicators": "Chairman, policeman, salesman, businessman, fireman; gender-marked role titles where gender is irrelevant.",
+          "Potential Concern Examples": "Ask the chairman for approval.",
+          "Non-Concern Examples": "Ask the chairperson for approval.; The historical document used the title chairman.",
+          "Context Considerations": "Historical quotations or official role titles may legitimately contain gender-marked terminology.",
+          "Possible Recommendation": "Use gender-neutral occupational terms where appropriate, e.g. chairperson, police officer, salesperson.",
+          "Analysis Method": "Rule + NLP + Contextual Analysis",
+          "Scope": "Sentence",
+          "Research Basis": "Occupational bias and explicit gender association with occupations/roles are identified in textual gender-bias research discussed by Kanij et al. (2025)."
+        },
+        {
+          "ID": "CARE-GI-01.3",
+          "CARE Category": "Gendered Language – Gendered Collective/Address Terms",
+          "Definition": "Gender-specific language used to address or collectively describe a mixed or unspecified group.",
+          "Indicators": "Expressions such as hey guys or you guys when addressing an unspecified/mixed group.",
+          "Potential Concern Examples": "Hey guys, please submit your assignments.",
+          "Non-Concern Examples": "Hello everyone, please submit your assignments.",
+          "Context Considerations": "Consider whether the term actually refers to a specific gendered group or is being quoted/discussed rather than used as an address.",
+          "Possible Recommendation": "Use inclusive collective terms such as everyone, students, team, or class.",
+          "Analysis Method": "Rule + NLP + Contextual Analysis",
+          "Scope": "Sentence",
+          "Research Basis": "Broader exclusionary and structural gender-bias taxonomies support examining gendered wording used in otherwise gender-neutral contexts (Kanij et al., 2025)."
+        },
+        {
+          "ID": "CARE-GI-01.4",
+          "CARE Category": "Gendered Language – Gendered/Exclusionary Examples or Names",
+          "Definition": "Unequal or stereotypical use of gender-associated characters or names within teaching examples.",
+          "Indicators": "One gender repeatedly used for technical/positive examples; another associated with negative or less technical examples.",
+          "Potential Concern Examples": "Male-named characters repeatedly succeed in programming examples while female-named characters repeatedly fail.",
+          "Non-Concern Examples": "A teaching module uses varied characters without systematically associating their gender with success or failure.",
+          "Context Considerations": "Do not infer gender from a name alone. Evaluate explicit gender information and broader patterns across several examples.",
+          "Possible Recommendation": "Use varied characters and avoid systematically associating gender with positive, negative or technical outcomes.",
+          "Analysis Method": "NLP + Document Aggregation + Contextual Analysis",
+          "Scope": "Section / Document",
+          "Research Basis": "CS instructional materials have been reported to assign negative roles disproportionately to characters with female names (Medel & Pournaghshband, as discussed in O'Brien et al., 2025)."
+        },
+        {
+          "ID": "CARE-GI-01.5",
+          "CARE Category": "Gendered Language – Binary Gender Assumptions",
+          "Definition": "Wording that unnecessarily assumes gender exists only within a male/female binary.",
+          "Indicators": "Unnecessary male/female-only wording; exclusion of other gender identities where broader terminology would be appropriate.",
+          "Potential Concern Examples": "Select your gender: Male / Female, when a binary classification is unnecessary to the activity.",
+          "Non-Concern Examples": "This study compares outcomes reported for male and female participants, when those are the defined study populations.",
+          "Context Considerations": "Binary categories may be appropriate when accurately reporting a dataset, study population or source. Consider the purpose before flagging.",
+          "Possible Recommendation": "Where appropriate, use inclusive gender terminology or provide additional/self-described options.",
+          "Analysis Method": "NLP + Contextual Analysis",
+          "Scope": "Sentence / Form / Document",
+          "Research Basis": "GenderMag discusses gender identity/expression beyond a simple binary and cautions against designs that unnecessarily assume only male/female users."
+        }
+      ]
+    },
+    {
+      "id": "CARE-GI-02",
+      "category": "Gender Stereotypes",
+      "source_summary": {
+        "ID": "CARE-GI-02",
+        "CARE Category": "Gender Stereotypes",
+        "Definition": "Content that reinforces stereotypical characteristics, behaviours, abilities, interests, learning approaches, or expectations based on gender.",
+        "Scenarios / Indicators": "Ability/competence; learning style; risk-taking; motivation/interest; personality/behaviour; hostile sexism; benevolent/patronising sexism.",
+        "Potential Concern Examples": "“Men are naturally better at programming.”; “Women are too cautious to experiment with unfamiliar software.”; “She is surprisingly good at programming for a woman.”",
+        "Non-Concern Examples": "“Students may use different approaches when learning new software.”; “The lecture examines stereotypes about women in computing.”",
+        "Context Considerations": "Discussion of a stereotype does not necessarily endorse it. Consider whether the content is explaining, quoting, criticising, or challenging the stereotype. Gender-correlated tendencies should not be treated as fixed characteristics of individuals.",
+        "Possible Recommendation": "Avoid unsupported gender generalisations and describe individual characteristics, behaviours, or evidence instead.",
+        "Analysis Method": "NLP + Contextual Analysis",
+        "Scope": "Sentence / Paragraph",
+        "Research Basis": "Research identifies gender stereotypes relating to competence and sexism; GenderMag additionally considers learning style, self-efficacy, risk and motivation (Kanij et al., 2025; O'Brien et al., 2025)."
+      },
+      "criteria": [
+        {
+          "ID": "CARE-GI-02.1",
+          "CARE Category": "Gender Stereotypes – Ability/Competence",
+          "Definition": "Generalisation that one gender is naturally more or less capable in a subject, skill or technical activity.",
+          "Indicators": "Claims about programming, mathematics, technical or problem-solving ability based on gender.",
+          "Potential Concern Examples": "Men are naturally better at programming.",
+          "Non-Concern Examples": "The study investigates whether gender differences exist in students’ computing experiences.",
+          "Context Considerations": "Researching or criticising an ability stereotype does not mean the material endorses it.",
+          "Possible Recommendation": "Remove gender-based generalisations and describe individual ability or research evidence instead.",
+          "Analysis Method": "NLP + Contextual Analysis",
+          "Scope": "Sentence / Paragraph",
+          "Research Basis": "Research describes negative assumptions about women's competence in CS/STEM contexts (O'Brien et al., 2025)."
+        },
+        {
+          "ID": "CARE-GI-02.2",
+          "CARE Category": "Gender Stereotypes – Learning Style",
+          "Definition": "Assumption that a person's preferred way of learning technology can be determined solely by gender.",
+          "Indicators": "Gender-based assumptions about following processes, instructions, exploration or tinkering.",
+          "Potential Concern Examples": "Female students need step-by-step instructions, while male students prefer experimenting.",
+          "Non-Concern Examples": "Different students may prefer structured instructions or experimentation.",
+          "Context Considerations": "GenderMag identifies gender-correlated learning-style differences; these should not be interpreted as fixed characteristics of every person of a gender.",
+          "Possible Recommendation": "Describe different learning approaches without assigning them automatically to genders.",
+          "Analysis Method": "NLP + Contextual Analysis",
+          "Scope": "Sentence / Paragraph",
+          "Research Basis": "GenderMag, as applied by O'Brien et al. (2025), uses learning style as a gender-correlated problem-solving facet rather than a universal gender characteristic."
+        },
+        {
+          "ID": "CARE-GI-02.3",
+          "CARE Category": "Gender Stereotypes – Risk-Taking",
+          "Definition": "Generalisation that willingness to take risks or experiment with technology is determined by gender.",
+          "Indicators": "Claims that women are inherently cautious; men inherently take technological risks.",
+          "Potential Concern Examples": "Women are too cautious to experiment with unfamiliar software.",
+          "Non-Concern Examples": "Some students may be reluctant to experiment when an action could cause data loss.",
+          "Context Considerations": "Risk attitude varies among individuals. GenderMag's facet represents a research-observed tendency, not a rule for individuals.",
+          "Possible Recommendation": "Avoid assigning risk behaviour according to gender; describe the actual behaviour or situation instead.",
+          "Analysis Method": "NLP + Contextual Analysis",
+          "Scope": "Sentence / Paragraph",
+          "Research Basis": "Attitude toward risk is one of the problem-solving facets incorporated into GenderMag and used in the gender-bias assessment approach of O'Brien et al. (2025)."
+        },
+        {
+          "ID": "CARE-GI-02.4",
+          "CARE Category": "Gender Stereotypes – Motivation/Interest",
+          "Definition": "Assumption that interest in or motivation for using technology is inherently determined by gender.",
+          "Indicators": "Claims about liking technology, programming or particular activities based on gender.",
+          "Potential Concern Examples": "Boys enjoy programming because they naturally like technology more than girls.",
+          "Non-Concern Examples": "Students have different motivations for learning programming.",
+          "Context Considerations": "Do not convert population-level observations about motivation into assumptions about individuals.",
+          "Possible Recommendation": "Describe the specific motivation or interest without attributing it inherently to gender.",
+          "Analysis Method": "NLP + Contextual Analysis",
+          "Scope": "Sentence / Paragraph",
+          "Research Basis": "Motivation is another GenderMag facet used to capture gender-correlated differences in approaches to technology (O'Brien et al., 2025)."
+        },
+        {
+          "ID": "CARE-GI-02.5",
+          "CARE Category": "Gender Stereotypes – Personality/Behaviour",
+          "Definition": "Content assigning stereotypical personality traits or behaviours according to gender.",
+          "Indicators": "Women described as emotional/passive; men as rational/assertive; gender-linked behavioural expectations.",
+          "Potential Concern Examples": "Women are emotional while men are logical problem-solvers.",
+          "Non-Concern Examples": "The case study examines stereotypes about gender and leadership behaviour.",
+          "Context Considerations": "Determine whether the material endorses, reports, critiques or challenges the stereotype.",
+          "Possible Recommendation": "Describe individuals based on their behaviour rather than gender-based assumptions.",
+          "Analysis Method": "NLP + Contextual Analysis",
+          "Scope": "Sentence / Paragraph",
+          "Research Basis": "Gender stereotypes and behavioural expectations are discussed as contextual forms of gender bias in the literature reviewed by Kanij et al. (2025)."
+        },
+        {
+          "ID": "CARE-GI-02.6",
+          "CARE Category": "Gender Stereotypes – Hostile Sexism",
+          "Definition": "Explicitly negative, demeaning or discriminatory statements about a gender.",
+          "Indicators": "Claims of incompetence, inferiority or unsuitability based on gender.",
+          "Potential Concern Examples": "Women are incompetent at work.",
+          "Non-Concern Examples": "The lecturer explains why the statement ‘women are incompetent at work’ is sexist.",
+          "Context Considerations": "Quoting a sexist statement to analyse or challenge it should not automatically be treated as endorsement.",
+          "Possible Recommendation": "Remove discriminatory generalisations and use evidence-based, individual-focused language.",
+          "Analysis Method": "NLP + Contextual Analysis",
+          "Scope": "Sentence / Paragraph",
+          "Research Basis": "Hostile sexism is explicitly included in the textual gender-bias taxonomy discussed by Kanij et al. (2025)."
+        },
+        {
+          "ID": "CARE-GI-02.7",
+          "CARE Category": "Gender Stereotypes – Benevolent/Patronising Sexism",
+          "Definition": "Apparently positive or complimentary wording that still reinforces a gender stereotype or implies lowered expectations.",
+          "Indicators": "Surprise at competence because of gender; paternalistic/patronising gender statements.",
+          "Potential Concern Examples": "She is surprisingly good at programming for a woman.",
+          "Non-Concern Examples": "She demonstrated strong programming skills in the assessment.",
+          "Context Considerations": "Positive wording can still contain an underlying stereotypical assumption. Contextual interpretation is important.",
+          "Possible Recommendation": "Remove the unnecessary gender comparison and describe the person's achievement directly.",
+          "Analysis Method": "NLP + Contextual Analysis",
+          "Scope": "Sentence / Paragraph",
+          "Research Basis": "Benevolent sexism is explicitly identified alongside hostile sexism in the taxonomy discussed by Kanij et al. (2025)."
+        }
+      ]
+    },
+    {
+      "id": "CARE-GI-03",
+      "category": "Representation",
+      "source_summary": {
+        "ID": "CARE-GI-03",
+        "CARE Category": "Representation",
+        "Definition": "Imbalance, limited representation, or systematically different portrayal of genders across examples, scenarios, characters, experts, or teaching content.",
+        "Scenarios / Indicators": "Numerical underrepresentation; expert/authority representation; participation/visibility imbalance; positive/negative character portrayal.",
+        "Potential Concern Examples": "Across 12 programming examples, 11 experts are men and one is a woman.; Male characters repeatedly appear as successful technical experts while female characters are repeatedly assigned negative roles.",
+        "Non-Concern Examples": "A single example involving a male programmer.; Teaching examples include people of different genders across technical and leadership roles.",
+        "Context Considerations": "Assess representation across multiple examples, sections, or the document rather than an isolated person. Do not infer gender from names alone.",
+        "Possible Recommendation": "Use a more balanced and diverse range of people, experts, characters, and examples where appropriate.",
+        "Analysis Method": "NLP + Document Aggregation + Contextual Analysis",
+        "Scope": "Section / Document",
+        "Research Basis": "Research reports gender underrepresentation and differences in the roles and representations given to characters in CS/SE educational material (O'Brien et al., 2025)."
+      },
+      "criteria": [
+        {
+          "ID": "CARE-GI-03.1",
+          "CARE Category": "Representation – Numerical Underrepresentation",
+          "Definition": "Persistent numerical imbalance in the genders represented across teaching examples or content.",
+          "Indicators": "Repeated dominance of one gender; systematic absence/underrepresentation.",
+          "Potential Concern Examples": "Across 12 programming examples, 11 experts are men and 1 is a woman.",
+          "Non-Concern Examples": "One isolated example features a male programmer.",
+          "Context Considerations": "Assess patterns across multiple examples rather than a single instance.",
+          "Possible Recommendation": "Where appropriate, include a more balanced range of people in examples.",
+          "Analysis Method": "Document Aggregation + Contextual Analysis",
+          "Scope": "Section / Document",
+          "Research Basis": "Persistent gender imbalance and underrepresentation in CS/SE education are reported in research reviewed by O'Brien et al. (2025)."
+        },
+        {
+          "ID": "CARE-GI-03.2",
+          "CARE Category": "Representation – Expert/Authority Representation",
+          "Definition": "One gender is repeatedly represented as the expert, authority or source of technical knowledge.",
+          "Indicators": "Lecturers, researchers, experts or authority figures consistently represented by one gender.",
+          "Potential Concern Examples": "All cybersecurity experts presented across a module are men.",
+          "Non-Concern Examples": "One case study contains a male cybersecurity expert.",
+          "Context Considerations": "Consider the overall pattern and whether representation accurately reflects a specific historical/source context.",
+          "Possible Recommendation": "Include varied genders in expert and authority examples where appropriate.",
+          "Analysis Method": "NLP + Document Aggregation + Contextual Analysis",
+          "Scope": "Section / Document",
+          "Research Basis": "Research into gender bias in CS/SE education identifies representation and male-dominated environments as relevant inclusivity concerns (O'Brien et al., 2025)."
+        },
+        {
+          "ID": "CARE-GI-03.3",
+          "CARE Category": "Representation – Participation/Visibility Imbalance",
+          "Definition": "One gender is repeatedly portrayed as the active participant while others are absent or passive.",
+          "Indicators": "Repeated active vs passive participation patterns; unequal visibility in technical activities.",
+          "Potential Concern Examples": "Male students repeatedly perform programming tasks while women mainly observe.",
+          "Non-Concern Examples": "Students of different genders participate in a range of technical activities.",
+          "Context Considerations": "A single participant does not establish a pattern. Examine the wider section/document.",
+          "Possible Recommendation": "Diversify who is shown actively participating in technical and learning activities.",
+          "Analysis Method": "Document Aggregation + Contextual Analysis",
+          "Scope": "Section / Document",
+          "Research Basis": "Research links masculine CS environments and representation with belonging and participation concerns (O'Brien et al., 2025)."
+        },
+        {
+          "ID": "CARE-GI-03.4",
+          "CARE Category": "Representation – Positive/Negative Character Portrayal",
+          "Definition": "Systematic association of particular genders with positive or negative character outcomes.",
+          "Indicators": "One gender repeatedly successful/competent; another repeatedly unsuccessful, problematic or dependent.",
+          "Potential Concern Examples": "Female-named characters repeatedly fail while male-named characters solve the technical problems.",
+          "Non-Concern Examples": "Characters of different genders appear across varied positive and negative situations without a systematic pattern.",
+          "Context Considerations": "Do not infer gender from names alone. Evaluate explicit gender information and patterns across multiple examples.",
+          "Possible Recommendation": "Avoid systematically associating a particular gender with negative outcomes or incompetence.",
+          "Analysis Method": "NLP + Document Aggregation + Contextual Analysis",
+          "Scope": "Section / Document",
+          "Research Basis": "Research on CS instructional materials reported disproportionate negative roles for characters with female names (Medel & Pournaghshband, as discussed in O'Brien et al., 2025)."
+        }
+      ]
+    },
+    {
+      "id": "CARE-GI-04",
+      "category": "Visual Representation",
+      "source_summary": {
+        "ID": "CARE-GI-04",
+        "CARE Category": "Visual Representation",
+        "Definition": "Potential gender imbalance, stereotyping, objectification, or gender-coded representation within images and other visual teaching material.",
+        "Scenarios / Indicators": "Stereotypical imagery; gendered visual authority; gendered aesthetics/“pink it and shrink it”; technical-confidence portrayal; sexualised/objectifying imagery; masculine-coded imagery/environment.",
+        "Potential Concern Examples": "Images repeatedly show men programming while women assist.; Pink is consistently used for women and blue for men.; Unnecessary sexualised imagery of women is used in an image-processing example.",
+        "Non-Concern Examples": "An image contains a man working on a computer.; A diagram uses gender-neutral icons.; Different genders participate in technical activities.",
+        "Context Considerations": "Do not infer gender solely from appearance when unclear. Consider the image's purpose, captions, surrounding text, and overall visual pattern. A single image may not establish imbalance.",
+        "Possible Recommendation": "Use diverse and inclusive visual representations and avoid unnecessary stereotypical, gender-coded, or objectifying imagery.",
+        "Analysis Method": "Visual Processing + Contextual Analysis",
+        "Scope": "Image / Slide / Document",
+        "Research Basis": "Research identifies gendered imagery, representation, sexualised imagery, and masculine-coded CS environments as relevant concerns (O'Brien et al., 2025; GenderMag)."
+      },
+      "criteria": [
+        {
+          "ID": "CARE-GI-04.1",
+          "CARE Category": "Visual Representation – Stereotypical Imagery",
+          "Definition": "Images repeatedly portray genders through stereotypical activities, characteristics or roles.",
+          "Indicators": "Men shown programming; women assisting; stereotypical gender activities.",
+          "Potential Concern Examples": "Several illustrations consistently show men programming while women take notes.",
+          "Non-Concern Examples": "One image contains a man using a computer.",
+          "Context Considerations": "Consider the overall visual pattern, image purpose, captions and surrounding text.",
+          "Possible Recommendation": "Use varied and inclusive visual representations.",
+          "Analysis Method": "Visual Processing + Contextual Analysis",
+          "Scope": "Image / Slide / Document",
+          "Research Basis": "Research identifies differences in representation and imagery in CS educational material as potential sources of gender bias (O'Brien et al., 2025)."
+        },
+        {
+          "ID": "CARE-GI-04.2",
+          "CARE Category": "Visual Representation – Gendered Visual Authority",
+          "Definition": "One gender is repeatedly visually portrayed as more authoritative, knowledgeable or powerful.",
+          "Indicators": "Men repeatedly lead/present; women observe, assist or take notes.",
+          "Potential Concern Examples": "Across multiple diagrams, men lead technical discussions while women assist.",
+          "Non-Concern Examples": "An individual man presents one project while other materials show diverse leadership.",
+          "Context Considerations": "Assess repeated patterns rather than isolated images.",
+          "Possible Recommendation": "Represent different genders across leadership, expert and supporting positions.",
+          "Analysis Method": "Visual Processing + Contextual Analysis",
+          "Scope": "Image / Slide / Document",
+          "Research Basis": "Research on gendered representations and masculine CS environments supports examining how visual material communicates belonging and authority (O'Brien et al., 2025)."
+        },
+        {
+          "ID": "CARE-GI-04.3",
+          "CARE Category": "Visual Representation – Gendered Aesthetics / “Pink It and Shrink It”",
+          "Definition": "Visual design unnecessarily relies on stereotypical gender colours or aesthetics.",
+          "Indicators": "Pink consistently used for women; blue for men; stereotypically feminised/masculinised visual design.",
+          "Potential Concern Examples": "A teaching graphic uses pink for all women and blue for all men.",
+          "Non-Concern Examples": "Pink appears as part of a general colour palette with no gender association.",
+          "Context Considerations": "Pink or blue is not inherently biased. Consider whether the colour is deliberately/repeatedly used to encode gender stereotypes.",
+          "Possible Recommendation": "Avoid unnecessary stereotypical colour coding and use functionally meaningful or neutral visual design.",
+          "Analysis Method": "Visual Processing + Contextual Analysis",
+          "Scope": "Image / Slide / Document",
+          "Research Basis": "GenderMag literature discusses genderised aesthetics and stereotypical design approaches such as “pink it and shrink it.”"
+        },
+        {
+          "ID": "CARE-GI-04.4",
+          "CARE Category": "Visual Representation – Technical Confidence Portrayal",
+          "Definition": "Images repeatedly associate confidence or independence with technology with one gender.",
+          "Indicators": "Men confidently operating systems; women appearing confused, hesitant or dependent on assistance.",
+          "Potential Concern Examples": "Male students are repeatedly shown confidently coding while female students require help.",
+          "Non-Concern Examples": "People of different genders are shown with varied levels of experience and confidence.",
+          "Context Considerations": "Confidence cannot reliably be inferred from gender or appearance alone. Consider captions, actions and repeated patterns.",
+          "Possible Recommendation": "Avoid repeatedly associating technological confidence or dependency with gender.",
+          "Analysis Method": "Visual Processing + Contextual Analysis",
+          "Scope": "Image / Slide / Document",
+          "Research Basis": "This scenario relates to the computer self-efficacy facet used by GenderMag and the literature linking masculine CS environments with women's confidence (O'Brien et al., 2025)."
+        },
+        {
+          "ID": "CARE-GI-04.5",
+          "CARE Category": "Visual Representation – Sexualised/Objectifying Imagery",
+          "Definition": "Unnecessary sexualisation or objectification of a gender in educational visual material.",
+          "Indicators": "Sexualised stock images; objectifying portrayals unrelated to learning purpose.",
+          "Potential Concern Examples": "A programming/image-processing exercise unnecessarily uses a sexualised image of a woman.",
+          "Non-Concern Examples": "A medical lesson uses relevant anatomical imagery for a legitimate educational purpose.",
+          "Context Considerations": "Consider educational relevance and purpose. The presence of a body/person is not automatically objectification.",
+          "Possible Recommendation": "Replace unnecessary sexualised/objectifying imagery with learning-relevant alternatives.",
+          "Analysis Method": "Visual Processing + Contextual Analysis",
+          "Scope": "Image / Slide",
+          "Research Basis": "Research reports the historical use of a Playboy centrefold image in image-processing teaching materials as an example of gender bias (Medel & Pournaghshband, as discussed in O'Brien et al., 2025)."
+        },
+        {
+          "ID": "CARE-GI-04.6",
+          "CARE Category": "Visual Representation – Masculine-Coded Imagery/Environment",
+          "Definition": "Visual material repeatedly uses imagery or design associated with stereotypically masculine computing culture.",
+          "Indicators": "Masculine-coded pictures, objects, symbols or webpage design that repeatedly signals who belongs in computing.",
+          "Potential Concern Examples": "A CS course webpage is dominated by stereotypically masculine imagery.",
+          "Non-Concern Examples": "A technical image appears because it is directly relevant to the subject.",
+          "Context Considerations": "Individual visual elements should not automatically be labelled masculine/feminine. Consider combinations, repetition and research-supported context.",
+          "Possible Recommendation": "Use inclusive and varied visual environments that avoid unnecessarily signalling that computing belongs to one gender.",
+          "Analysis Method": "Visual Processing + Contextual Analysis",
+          "Scope": "Slide / Webpage / Document",
+          "Research Basis": "Masculine-stereotyped CS webpages were associated with lower confidence, belonging and enrolment intention among women in research discussed by O'Brien et al. (2025)."
+        }
+      ]
+    },
+    {
+      "id": "CARE-GI-05",
+      "category": "Professional Roles",
+      "source_summary": {
+        "ID": "CARE-GI-05",
+        "CARE Category": "Professional Roles",
+        "Definition": "Repeated or stereotypical association of genders with occupations, technical positions, leadership roles, support roles, or responsibilities.",
+        "Scenarios / Indicators": "Gendered division of labour; leadership vs support roles; technical vs non-technical roles; gender-assigned occupational expectations.",
+        "Potential Concern Examples": "“Professors are men and elementary teachers are women.”; Men repeatedly appear as engineers/team leaders while women are shown in administrative or support roles.",
+        "Non-Concern Examples": "“The software engineer developed the application while the project manager coordinated the project.”; A woman is a project manager and a man is a developer in one factual example.",
+        "Context Considerations": "An individual legitimately holding a particular role is not itself a concern. Consider repeated patterns and whether the material reinforces, reports, or challenges occupational stereotypes.",
+        "Possible Recommendation": "Use varied and inclusive examples of genders across technical, leadership, professional, and supporting roles.",
+        "Analysis Method": "NLP + Document Aggregation + Contextual Analysis",
+        "Scope": "Paragraph / Section / Document",
+        "Research Basis": "Occupational bias, gendered division of labour, and gendered roles/duties are identified in textual gender-bias research (Kanij et al., 2025)."
+      },
+      "criteria": [
+        {
+          "ID": "CARE-GI-05.1",
+          "CARE Category": "Professional Roles – Gendered Division of Labour",
+          "Definition": "Different occupations or types of work are stereotypically assigned according to gender.",
+          "Indicators": "Men associated with technical/professional work; women with caring/support work.",
+          "Potential Concern Examples": "Professors are men and elementary teachers are women.",
+          "Non-Concern Examples": "The professor presented the lecture and the teacher facilitated the workshop.",
+          "Context Considerations": "Factual descriptions of real individuals are not automatically concerns. Look for generalisation or repeated patterns.",
+          "Possible Recommendation": "Use varied genders across occupations and avoid presenting occupational divisions as natural gender differences.",
+          "Analysis Method": "NLP + Contextual Analysis",
+          "Scope": "Sentence / Paragraph / Document",
+          "Research Basis": "Gendered Division of Labor is explicitly identified as occupational bias in the taxonomy discussed by Kanij et al. (2025)."
+        },
+        {
+          "ID": "CARE-GI-05.2",
+          "CARE Category": "Professional Roles – Leadership vs Support Roles",
+          "Definition": "Gender is repeatedly associated with different levels of authority or responsibility.",
+          "Indicators": "Men as managers/leaders; women as assistants/note-takers/support staff.",
+          "Potential Concern Examples": "Men repeatedly lead software teams while women organise meetings and take notes.",
+          "Non-Concern Examples": "A woman is a project manager and a man is a developer in one factual scenario.",
+          "Context Considerations": "Examine repeated patterns. An individual holding a particular position is not evidence of bias by itself.",
+          "Possible Recommendation": "Diversify leadership and supporting roles across genders.",
+          "Analysis Method": "NLP + Document Aggregation + Contextual Analysis",
+          "Scope": "Paragraph / Document",
+          "Research Basis": "Gender-bias research identifies gendered roles and duties as occupational bias (Kanij et al., 2025)."
+        },
+        {
+          "ID": "CARE-GI-05.3",
+          "CARE Category": "Professional Roles – Technical vs Non-Technical Roles",
+          "Definition": "Technical expertise is repeatedly associated with one gender while another is associated with non-technical work.",
+          "Indicators": "Men as developers/engineers; women as HR/administration/support.",
+          "Potential Concern Examples": "Male characters are software developers while female characters are administrative assistants across the examples.",
+          "Non-Concern Examples": "Different genders are represented across technical and non-technical roles.",
+          "Context Considerations": "Consider the pattern across the material rather than individual legitimate occupations.",
+          "Possible Recommendation": "Include varied genders in technical and non-technical professional roles.",
+          "Analysis Method": "NLP + Document Aggregation + Contextual Analysis",
+          "Scope": "Paragraph / Document",
+          "Research Basis": "Occupational bias and gendered assignment of roles/duties are recognised forms of textual gender bias (Kanij et al., 2025)."
+        },
+        {
+          "ID": "CARE-GI-05.4",
+          "CARE Category": "Professional Roles – Gender-Assigned Occupational Expectations",
+          "Definition": "Content explicitly suggests that particular careers or responsibilities naturally suit a particular gender.",
+          "Indicators": "Claims that men/women are naturally suited to specific occupations.",
+          "Potential Concern Examples": "Men make good computer scientists while women are better suited to nursing.",
+          "Non-Concern Examples": "This study examines women's representation in nursing and computing professions.",
+          "Context Considerations": "Discussion of an occupational stereotype is different from endorsing it. Consider historical/research context.",
+          "Possible Recommendation": "Remove gender-based occupational assumptions and focus on skills, qualifications and individual interests.",
+          "Analysis Method": "NLP + Contextual Analysis",
+          "Scope": "Sentence / Paragraph",
+          "Research Basis": "GenderMag materials discuss stereotypical societal expectations connecting gender with occupations, while occupational bias is also identified in textual gender-bias taxonomies (Kanij et al., 2025)."
+        }
+      ]
+    }
+  ],
+  "reference_notes": [
+    {
+      "Citation Used": "Kanij et al. (2025)",
+      "Framework Use": "Textual bias taxonomy; generic pronouns; sexism; occupational/structural/contextual bias",
+      "Source Note": "CARE research source supplied for the project."
+    },
+    {
+      "Citation Used": "O'Brien et al. (2025)",
+      "Framework Use": "Educational materials; imagery; representation; competence; masculine-coded environments",
+      "Source Note": "CARE research source supplied for the project."
+    },
+    {
+      "Citation Used": "Medel & Pournaghshband (as discussed in O'Brien et al., 2025)",
+      "Framework Use": "Gendered pronouns; negative roles; sexualised image-processing example",
+      "Source Note": "Secondary citation retained because this evidence was encountered through O'Brien et al. (2025)."
+    },
+    {
+      "Citation Used": "GenderMag",
+      "Framework Use": "Learning style; risk; motivation; self-efficacy; inclusive design considerations",
+      "Source Note": "Used as a supporting lens; facets are not treated as fixed characteristics of individuals."
+    }
+  ]
+}

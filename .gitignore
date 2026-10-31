@@ -16,6 +16,17 @@ htmlcov/
 node_modules/
 dist/
 
+# Local editor/assistant settings
+.claude/
+
 # Operating system files
 .DS_Store
 Thumbs.db
+
+# Generated analyses may contain uploaded teaching content.
+output/*
+!output/.gitkeep
+evaluation/results/*
+!evaluation/results/.gitkeep
+
+__pycache__/
