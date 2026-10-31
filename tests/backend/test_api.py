@@ -39,8 +39,10 @@ def test_extraction_api_text_file_and_validation(client):
     assert result.json()["document"]["sections"][0]["text"] == text
     upload = client.post("/api/extract/file", files={"file": ("lesson.txt", text.encode(), "text/plain")})
     assert upload.status_code == 200
-    bad = client.post("/api/uploads", files={"file": ("lesson.png", b"fake", "image/png")})
+    bad = client.post("/api/uploads", files={"file": ("lesson.svg", b"<svg/>", "image/svg+xml")})
     assert bad.status_code == 422 and bad.json()["error"]["code"] == "unsupported_format"
+    fake = client.post("/api/uploads", files={"file": ("lesson.png", b"fake", "image/png")})
+    assert fake.status_code == 422 and fake.json()["error"]["code"] == "invalid_document"
     assert client.post("/api/extract/text", json={"text": "  "}).status_code == 422
 
 
